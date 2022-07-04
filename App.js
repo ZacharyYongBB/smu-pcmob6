@@ -33,7 +33,7 @@ export default function App() {
         <Stack.Navigator
           mode="modal"
           headerMode="none"
-          initialRouteName={signedIn ? "Logged In" : "SignInSignUp"}
+          initialRouteName="SignInSignUp"
           animationEnabled={false}>
         <Stack.Screen component={LoggedInTabStack} name="Logged In" />
           <Stack.Screen component={SignInSignUpScreen} name="SignInSignUp" />
