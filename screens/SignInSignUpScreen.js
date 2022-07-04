@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard } from 'react-native';
-import { API, API_LOGIN } from '../constants/API';
+import { API, API_LOGIN, API_SIGNUP } from '../constants/API';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
@@ -17,6 +17,7 @@ export default function SignInSignUpScreen({ navigation }) {
   const [errorText, setErrorText] = useState('')
 
   const [isLogIn, setIsLogIn] = useState(true)
+  const [confirmPassword,setConfirmPassword] = useState('')
 
   async function login() {
     console.log("---- Login time ----");
@@ -89,16 +90,6 @@ export default function SignInSignUpScreen({ navigation }) {
         />
       </View>
 
-      {isLogIn ? <View/> :
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Confirm Password:"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            onChangeText={(pw) => setConfirmPassword(pw)}
-          />
-        </View>}
 
   
       <View style={styles.inputView}>
@@ -111,6 +102,18 @@ export default function SignInSignUpScreen({ navigation }) {
           onChangeText={(pw) => setPassword(pw)}
         />
       </View>
+
+
+      {isLogIn ? <View/> :
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Confirm Password:"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            onChangeText={(pw) => setConfirmPassword(pw)}
+          />
+        </View>}
       <View/>
       <View>
         <View style={{flexDirection: "row"}}>
@@ -128,7 +131,7 @@ export default function SignInSignUpScreen({ navigation }) {
          LayoutAnimation.configureNext({
            duration: 700,
            create: { type: 'linear', property: 'opacity' },
-           update: { type: 'spring', springDamping: 0.4 }
+           update: { type: 'spring', springDamping: 0.0001 }
          });
          setIsLogIn(!isLogIn);
          setErrorText("");
