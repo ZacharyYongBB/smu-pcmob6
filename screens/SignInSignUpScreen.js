@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard } from 'react-native';
+import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard } from 'react-native';
 import { API, API_LOGIN } from '../constants/API';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -97,10 +97,14 @@ export default function SignInSignUpScreen({ navigation }) {
       </Text>
       <TouchableOpacity
         onPress={() => {
-          
-          setIsLogIn(!isLogIn);
-          setErrorText("");
-        }}>
+         LayoutAnimation.configureNext({
+           duration: 700,
+           create: { type: 'linear', property: 'opacity' },
+           update: { type: 'spring', springDamping: 0.4 }
+         });
+         setIsLogIn(!isLogIn);
+         setErrorText("");
+       }}>
           <Text style={styles.switchText}> {isLogIn ? "No account? Sign up now." : "Already have an account? Log in here."}</Text>
       </TouchableOpacity>
     </View>
