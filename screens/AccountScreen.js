@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { ActivityIndicator, Text, View,TouchableOpacity } from "react-native";
+import React, { useState, useEffect, } from "react";
+import { ActivityIndicator, Text, View,TouchableOpacity, StyleSheet} from "react-native";
 import { commonStyles, lightStyles } from "../styles/commonStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API, API_WHOAMI } from "../constants/API";
-import SignInSignUpScreen from "./SignInSignUpScreen";
+
 
 export default function AccountScreen({ navigation }) {
 
@@ -63,8 +63,16 @@ export default function AccountScreen({ navigation }) {
         {username}
       </Text>
       <TouchableOpacity onPress={signOut}>
-        <Text>LOGOUT</Text>
+        <Text style={styles.logout}>LOGOUT</Text>
         </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  logout: {
+    marginTop:10,
+    flex:1,
+    color:"red",
+  },
+});

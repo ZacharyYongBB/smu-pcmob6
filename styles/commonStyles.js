@@ -20,6 +20,11 @@ export const commonStyles = {
     fontWeight: '400',
     fontSize: 24,
   },
+  logout: {
+    marginTop:100,
+    flex:1,
+    color:"red",
+  },
 }
 
 export const lightStyles = {
@@ -65,5 +70,6 @@ export const darkStyles = {
     fontWeight: "bold",
     color: "#f4d47c"
   },
-  headerTint: "#f4d47c"
+  headerTint: "#f4d47c",
+  
 }
