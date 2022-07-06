@@ -1,20 +1,28 @@
-import React, { useState, useEffect, } from "react";
-import { ActivityIndicator, Text, View,TouchableOpacity, StyleSheet} from "react-native";
-import { commonStyles, lightStyles } from "../styles/commonStyles";
-
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { API, API_WHOAMI } from "../constants/API";
-import { useSelector } from "react-redux";
+import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
+import { lightModeAction, darkModeAction } from "../redux/ducks/accountPref";
 
 export default function AccountScreen({ navigation }) {
-  const token = useSelector((state) => state.auth.token);
   const [username, setUsername] = useState(null);
 
-  const styles = { ...commonStyles, ...lightStyles };
+  const token = useSelector((state) => state.auth.token);
 
+  const isDark = useSelector((state) => state.accountPrefs.isDark);
+  const dispatch = useDispatch();
+
+  const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
   async function getUsername() {
     console.log("---- Getting user name ----");
-    
     console.log(`Token is ${token}`);
     try {
       const response = await axios.get(API + API_WHOAMI, {
@@ -28,7 +36,7 @@ export default function AccountScreen({ navigation }) {
         console.log(error.response.data);
         if (error.response.data.status_code === 401) {
           signOut();
-          navigation.navigate("SignInSignUp")
+          navigation.navigate("SignInSignUp");
         }
       } else {
         console.log(error);
@@ -38,8 +46,11 @@ export default function AccountScreen({ navigation }) {
   }
 
   function signOut() {
-    
     navigation.navigate("SignInSignUp");
+  }
+
+  function switchMode() {
+    dispatch(isDark ? lightModeAction() : darkModeAction());
   }
 
   useEffect(() => {
@@ -56,23 +67,30 @@ export default function AccountScreen({ navigation }) {
 
   return (
     <View style={[styles.container, { alignItems: "center" }]}>
-      <Text style={{marginTop: 20}}>
-        Account Screen
+      <Text style={[styles.title, styles.text, { marginTop: 30 }]}>
+        {" "}
+        Hello {username} !
       </Text>
-      <Text>
-        {username}
-      </Text>
-      <TouchableOpacity onPress={signOut}>
-        <Text style={styles.logout}>LOGOUT</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+        <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
+          {" "}
+          No profile picture. Click to take one.{" "}
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin: 20,
+        }}
+      >
+        <Text style={[styles.content, styles.text]}> Dark Mode? </Text>
+        <Switch value={isDark} onChange={switchMode} />
+      </View>
+      <TouchableOpacity style={[styles.button]} onPress={signOut}>
+        <Text style={styles.buttonText}>Sign Out</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  logout: {
-    marginTop:10,
-    flex:1,
-    color:"red",
-  },
-});
