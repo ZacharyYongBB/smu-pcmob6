@@ -9,13 +9,25 @@ export function logOutAction() {
 }
 
 const initialState = {
-    token:null,
+    token: null,
 }
 
 export default function blogAuthReducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
+    // e.g action = {type: LOG_IN}
+    // action.type returns LOG_IN
         case LOG_IN:
+        // if action.type is LOG_in
+            // state = {token: null}
+            // {...{token: null}}
+            // {token: null}
+
+            // action = {payload:"access_token"}
+            // action.payload returns "access_token"
+
             return { ...state, token: action.payload }
+            // Since we have token: action.payload,
+            // this will override ...state which returns {token: null}
         case LOG_OUT:
             return { ...state, token: null }
         default:
