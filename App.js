@@ -18,7 +18,7 @@ function App() {
   console.log(token);
   return (
     <NavigationContainer>
-      <StatusBar style={isDark ? "light" : "dark"} />
+      <StatusBar style={isDark ? "light" : "dark"} backgroundColor="red"/>
       <Stack.Navigator
         initialRouteName={token != null ? "Logged In" : "SignInSignUp"}
         animationEnabled={false}
