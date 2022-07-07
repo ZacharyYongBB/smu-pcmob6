@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard } from 'react-native';
 import { API, API_LOGIN, API_SIGNUP } from '../constants/API';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { logInAction } from '../redux/ducks/blogAuth';
+
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
