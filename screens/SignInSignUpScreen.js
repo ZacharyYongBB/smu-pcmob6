@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard } from 'react-native';
+import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard, Image } from 'react-native';
 import { API, API_LOGIN, API_SIGNUP } from '../constants/API';
 
 import axios from 'axios';
@@ -81,6 +81,8 @@ export default function SignInSignUpScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../assets/titlelogo.png')} style={{ width: 250, height: 250, borderRadius: 200 }} />
+      
       <Text style={styles.title}>
         {isLogIn ? "Log In" : "Sign Up"}
       </Text>
@@ -135,7 +137,7 @@ export default function SignInSignUpScreen({ navigation }) {
          LayoutAnimation.configureNext({
            duration: 700,
            create: { type: 'linear', property: 'opacity' },
-           update: { type: 'spring', springDamping: 0.0001 }
+           update: { type: 'spring', springDamping: 0.5 }
          });
          setIsLogIn(!isLogIn);
          setErrorText("");
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "lightgray",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: 'gray',
     borderRadius: 25,
   },
   buttonText: {
