@@ -47,7 +47,7 @@ export const lightStyles = {
     fontWeight: "bold",
     color: "#f4d47c"
   },
-  headerTint: "#f55"
+  headerTint: "#f4d47c"
 };
 
 export const darkStyles = {

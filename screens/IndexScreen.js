@@ -1,4 +1,4 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome,FontAwesome5 } from "@expo/vector-icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -25,8 +25,8 @@ export default function IndexScreen({ navigation, route }) {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={addPost}>
-          <FontAwesome
-            name="plus"
+          <FontAwesome5
+            name="dumbbell"
             size={24}
             style={{ color: styles.headerTint, marginRight: 15 }}
           />
