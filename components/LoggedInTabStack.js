@@ -12,7 +12,7 @@ export default function LoggedInTabStack() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: "tomato",
+        tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           backgroundColor: isDark ? "#181818" : "white",
