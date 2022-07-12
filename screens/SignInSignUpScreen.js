@@ -79,6 +79,7 @@ export default function SignInSignUpScreen({ navigation }) {
     }
   }
 
+  const buttonText = isLogIn ? "Log In" : "Sign Up";
   return (
     <View style={styles.container}>
       <Image source={require('../assets/titlelogo.png')} style={{ width: 250, height: 250, borderRadius: 200 }} />
@@ -124,9 +125,9 @@ export default function SignInSignUpScreen({ navigation }) {
       <View>
         <View style={{flexDirection: "row"}}>
           <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : signUp}>
-             <Text style={styles.buttonText}> {isLogIn ? "Log In" : "Sign Up"} </Text>
+             
+          {loading ? <ActivityIndicator style={styles.buttonText }/> : <Text style={styles.buttonText}> {buttonText} </Text>}
           </TouchableOpacity>
-          {loading ? <ActivityIndicator style={{ marginLeft: 10 }}/> : <View/>}
         </View>
       </View>
       <Text style={styles.errorText}>

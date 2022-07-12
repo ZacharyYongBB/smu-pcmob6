@@ -17,7 +17,8 @@ export default function CreateScreen({ navigation }) {
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
 
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [weight, setWeight] = useState("");
+  const [reps, setReps] = useState("");
   async function savePost() {
     const post = {
       title: title,
@@ -38,19 +39,27 @@ export default function CreateScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ margin: 20 }}>
-        <Text style={[additionalStyles.label, styles.text]}>Enter Title:</Text>
+        <Text style={[additionalStyles.label, styles.text]}>Type of lift:</Text>
         <TextInput
           style={additionalStyles.input}
           value={title}
           onChangeText={(text) => setTitle(text)}
         />
         <Text style={[additionalStyles.label, styles.text]}>
-          Enter Content:
+          Enter Weight:
         </Text>
         <TextInput
           style={additionalStyles.input}
-          value={content}
-          onChangeText={(text) => setContent(text)}
+          value={weight}
+          onChangeText={(text) => setWeight(text)}
+        />
+         <Text style={[additionalStyles.label, styles.text]}>
+          Enter Reps:
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={reps}
+          onChangeText={(text) => setReps(text)}
         />
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
@@ -66,9 +75,11 @@ export default function CreateScreen({ navigation }) {
 const additionalStyles = StyleSheet.create({
   input: {
     fontSize: 24,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "black",
     marginBottom: 15,
+    borderRadius: 5,
+    
   },
   label: {
     fontSize: 28,
