@@ -57,6 +57,7 @@ export const darkStyles = {
   },
   text: {
     color: "white",
+    fontSize: 20,
   },
   header: {
     backgroundColor: "#444444",
