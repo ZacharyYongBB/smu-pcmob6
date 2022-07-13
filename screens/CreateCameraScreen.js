@@ -6,16 +6,10 @@ import { darkStyles, lightStyles } from "../styles/commonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPicAction } from "../redux/ducks/accountPref";
 
-
-
-
-
-export default function CameraScreen({ navigation, route }) {
+export default function CameraScreen({ navigation }) {
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = isDark ? darkStyles : lightStyles;
   const dispatch = useDispatch();
-
-  const { goBackTo } = route.params;
 
   const [hasPermission, setHasPermission] = useState(null);
   const [front, setFront] = useState(true);
@@ -38,7 +32,7 @@ export default function CameraScreen({ navigation, route }) {
     // console.log(photo)
     console.log(photo);
     dispatch({ ...dispatch(uploadPicAction()), payload: photo.uri });
-    navigation.navigate(goBackTo);
+    navigation.navigate("Account");
   }
 
   useEffect(() => {
@@ -61,7 +55,6 @@ export default function CameraScreen({ navigation, route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      
       <Camera
         style={additionalStyles.camera}
         type={front ? Camera.Constants.Type.front : Camera.Constants.Type.back}
@@ -79,7 +72,6 @@ export default function CameraScreen({ navigation, route }) {
           </View>
         </View>
       </Camera>
-      
     </View>
   );
 }

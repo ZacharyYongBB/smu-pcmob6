@@ -73,18 +73,18 @@ export default function AccountScreen({ navigation }) {
 
   return (
     <View style={[styles.container, { alignItems: "center" }]}>
-      <Text style={[styles.title, styles.text, { marginTop: 30 }]}>
+      <Text style={[styles.title, styles.text, { marginTop: 30, marginBottom:30 }]}>
         {" "}
         Hello {username} !
       </Text>
       <Image
         source={{ uri: profilePicture }}
-        style={{ width: 250, height: 250, borderRadius: 200 }}
+        style={{ width: 250, height: 250, borderRadius: 200, marginBottom:30 }}
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Camera", { goBackTo: "Account" })}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
           {" "}
-          No profile picture. Click to take one.{" "}
+          Change profile picture{" "}
         </Text>
       </TouchableOpacity>
       <View
@@ -95,7 +95,7 @@ export default function AccountScreen({ navigation }) {
           margin: 20,
         }}
       >
-        <Text style={[styles.content, styles.text]}> Dark Mode? </Text>
+        <Text style={[styles.content, styles.text]}> Dark Mode </Text>
         <Switch value={isDark} onChange={switchMode} />
       </View>
       <TouchableOpacity style={[styles.button]} onPress={signOut}>

@@ -23,16 +23,6 @@ export default function AccountStack() {
           headerLeft: null,
         }}
       />
-      <Stack.Screen
-        component={CameraScreen}
-        name="Camera"
-        options={{
-          title: "Take a photo",
-          headerStyle: styles.header,
-          headerTitleStyle: styles.headerTitle,
-          headerTintColor: styles.headerTint,
-        }}
-      />
     </Stack.Navigator>
   );
 }
