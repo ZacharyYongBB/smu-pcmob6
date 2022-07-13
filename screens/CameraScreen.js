@@ -6,10 +6,6 @@ import { darkStyles, lightStyles } from "../styles/commonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPicAction } from "../redux/ducks/accountPref";
 
-
-
-
-
 export default function CameraScreen({ navigation, route }) {
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = isDark ? darkStyles : lightStyles;
@@ -61,7 +57,6 @@ export default function CameraScreen({ navigation, route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      
       <Camera
         style={additionalStyles.camera}
         type={front ? Camera.Constants.Type.front : Camera.Constants.Type.back}
@@ -79,7 +74,6 @@ export default function CameraScreen({ navigation, route }) {
           </View>
         </View>
       </Camera>
-      
     </View>
   );
 }
@@ -98,6 +92,7 @@ const additionalStyles = StyleSheet.create({
     height: 70,
     bottom: 0,
     borderRadius: 50,
+    marginBottom: 30,
   },
   buttonView: {
     alignSelf: "center",

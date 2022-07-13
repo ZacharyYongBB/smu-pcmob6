@@ -72,7 +72,7 @@ export default function CreateScreen({ navigation }) {
           value={reps}
           onChangeText={(text) => setReps(text)}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Camera", { goBackTo: "Add" })}>
+        <TouchableOpacity onPress={() => navigation.navigate("Camera", { screen: "CameraScreen", params: { goBackTo: "Add" }})}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
           {" "}
           Upload Photo{" "}

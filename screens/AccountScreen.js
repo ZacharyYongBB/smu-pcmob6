@@ -81,7 +81,7 @@ export default function AccountScreen({ navigation }) {
         source={{ uri: profilePicture }}
         style={{ width: 250, height: 250, borderRadius: 200, marginBottom:30 }}
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Camera", { goBackTo: "Account" })}>
+      <TouchableOpacity onPress={() => navigation.navigate("Camera", { screen: "CameraScreen", params: { goBackTo: "Account" } })}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
           {" "}
           Change profile picture{" "}

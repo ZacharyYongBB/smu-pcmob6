@@ -9,6 +9,7 @@ import SignInSignUpScreen from "./screens/SignInSignUpScreen";
 import { StatusBar } from "expo-status-bar";
 import CameraScreen from "./screens/CameraScreen";
 import { lightStyles, darkStyles, commonStyles } from "./styles/commonStyles";
+import CameraStack from "./components/CameraStack";
 
 const Stack = createStackNavigator();
 
@@ -29,17 +30,8 @@ function App() {
       >
         <Stack.Screen component={SignInSignUpScreen} name="SignInSignUp" />
         <Stack.Screen component={LoggedInTabStack} name="Logged In" />
+        <Stack.Screen component={CameraStack} name="Camera" />
         
-        <Stack.Screen
-          component={CameraScreen}
-          name="Camera"
-          options={{
-            title: "Take a photo",
-            headerStyle: styles.header,
-            headerTitleStyle: styles.headerTitle,
-            headerTintColor: styles.headerTint,
-          }}
-        />
         </Stack.Navigator>
       
     </NavigationContainer>
