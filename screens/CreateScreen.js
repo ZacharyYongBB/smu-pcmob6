@@ -17,12 +17,15 @@ export default function CreateScreen({ navigation }) {
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
 
   const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState("");
   async function savePost() {
     const post = {
       title: title,
-      content: content,
+      date: date,
+      weight: weight,
+      reps: reps,
     };
     try {
       console.log(token);
@@ -44,6 +47,14 @@ export default function CreateScreen({ navigation }) {
           style={additionalStyles.input}
           value={title}
           onChangeText={(text) => setTitle(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>
+          Enter Date:
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={date}
+          onChangeText={(text) => setDate(text)}
         />
         <Text style={[additionalStyles.label, styles.text]}>
           Enter Weight:

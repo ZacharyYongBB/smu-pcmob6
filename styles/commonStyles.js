@@ -34,6 +34,7 @@ export const lightStyles = {
   },
   text: {
     color: "black",
+    fontSize: 20,
   },
   header: {
     backgroundColor: "gray",
