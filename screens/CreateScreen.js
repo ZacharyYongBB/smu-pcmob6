@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ScrollView,
   View,
   Image,
 } from "react-native";
@@ -48,7 +49,7 @@ export default function CreateScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}  keyboardShouldPersistTaps='handled'>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Type of lift:</Text>
         <TextInput
@@ -71,6 +72,7 @@ export default function CreateScreen({ navigation }) {
           style={additionalStyles.input}
           value={weight}
           onChangeText={(text) => setWeight(text)}
+          keyboardType="numeric"
         />
          <Text style={[additionalStyles.label, styles.text]}>
           Enter Reps:
@@ -79,6 +81,7 @@ export default function CreateScreen({ navigation }) {
           style={additionalStyles.input}
           value={reps}
           onChangeText={(text) => setReps(text)}
+          keyboardType="numeric"
         />
         <TouchableOpacity onPress={() => navigation.navigate("Camera", { 
           
@@ -97,7 +100,7 @@ export default function CreateScreen({ navigation }) {
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

@@ -36,7 +36,7 @@ export default function BlogStack() {
         options={headerOptions}
       />
       <InnerStack.Screen
-        name="Edit"
+        name="Notes"
         component={EditScreen}
         op
         tions={{ title: "Edit Post", ...headerOptions }}
