@@ -53,21 +53,21 @@ export default function ShowScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, styles.text, { margin: 40 }]}>
+      <Text style={[styles.title, styles.text, { margin: 30, fontFamily:"Academy Engraved LET", fontSize:35 }]}>
         {post.title}
       </Text>
       <Image
         source={{ uri: post.picture}}
-        style={{ width: 250, height: 250, marginBottom:10, justifyContent:"center", alignItems:"center", flex:1, flexDirection:"row", alignSelf:"center" }}
+        style={{ width: 350, height: 350, marginBottom:10, justifyContent:"center", alignItems:"center", flex:1, flexDirection:"row", alignSelf:"center" }}
       />
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
-        {post.date}
+        Date : {post.date}
       </Text>
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
-        {post.weight}
+        Weight (kg) : {post.weight}
       </Text>
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
-        {post.reps}
+        Reps : {post.reps}
       </Text>
     </View>
   );

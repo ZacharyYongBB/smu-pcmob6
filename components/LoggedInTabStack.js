@@ -12,7 +12,7 @@ export default function LoggedInTabStack() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: isDark ? "white" : "black",
+        tabBarActiveTintColor: isDark ? "#f4d47c" : "#f4d47c",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           backgroundColor: isDark ? "#181818" : "white",
@@ -20,8 +20,8 @@ export default function LoggedInTabStack() {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === "Blog") {
-            iconName = "comments";
+          if (route.name === "Workouts") {
+            iconName = "dribbble";
           } else if (route.name === "Settings") {
             iconName = "cog";
           }
@@ -30,7 +30,7 @@ export default function LoggedInTabStack() {
         },
       })}
     >
-      <Tab.Screen name="Blog" component={BlogStack} />
+      <Tab.Screen name="Workouts" component={BlogStack} />
       <Tab.Screen name="Settings" component={AccountStack} />
     </Tab.Navigator>
   );
