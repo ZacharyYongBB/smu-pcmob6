@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Image } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_POSTS } from "../constants/API";
 import { commonStyles, lightStyles, darkStyles } from "../styles/commonStyles";
@@ -56,6 +56,10 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[styles.title, styles.text, { margin: 40 }]}>
         {post.title}
       </Text>
+      <Image
+        source={{ uri: post.picture}}
+        style={{ width: 250, height: 250, marginBottom:10, justifyContent:"center", alignItems:"center", flex:1, flexDirection:"row", alignSelf:"center" }}
+      />
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
         {post.date}
       </Text>

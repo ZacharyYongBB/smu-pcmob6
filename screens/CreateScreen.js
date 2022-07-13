@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
+import ImageLoad from "react-native-image-placeholder";
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
@@ -32,7 +33,7 @@ export default function CreateScreen({ navigation }) {
       date: date,
       weight: weight,
       reps: reps,
-      //postPicture: postPicture,
+      picture: postPicture,
     };
     try {
       console.log(token);
@@ -82,15 +83,13 @@ export default function CreateScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate("Camera", { 
           
           screen: "CameraScreen", params: { goBackTo: "Add", fromCreateScreen: true, }})}>
-        <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
-          {" "}
-          Upload Photo{" "}
-        </Text>
-      </TouchableOpacity>
-      <Image
+       
+      <ImageLoad
+        isShowActivity={false}
         source={{ uri: postPicture }}
         style={{ width: 100, height: 100, marginBottom:5, marginTop:5, }}
-      />
+        />
+        </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
           onPress={savePost}
