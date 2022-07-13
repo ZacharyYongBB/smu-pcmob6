@@ -4,9 +4,10 @@ import { Camera } from "expo-camera";
 import { FontAwesome } from "@expo/vector-icons";
 import { darkStyles, lightStyles } from "../styles/commonStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadPicAction } from "../redux/ducks/accountPref";
+import { addPicAction, ADD_PIC, uploadPicAction } from "../redux/ducks/accountPref";
 
 export default function CameraScreen({ navigation, route }) {
+  const {fromCreateScreen} = route.params;
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = isDark ? darkStyles : lightStyles;
   const dispatch = useDispatch();
@@ -32,8 +33,8 @@ export default function CameraScreen({ navigation, route }) {
   async function takePicture() {
     const photo = await cameraRef.current.takePictureAsync();
     // console.log(photo)
-    console.log(photo);
-    dispatch({ ...dispatch(uploadPicAction()), payload: photo.uri });
+    console.log(route.params);
+    dispatch({ ...dispatch(fromCreateScreen ? addPicAction() : uploadPicAction()), payload: photo.uri });
     navigation.navigate(goBackTo);
   }
 
@@ -57,6 +58,7 @@ export default function CameraScreen({ navigation, route }) {
 
   return (
     <View style={{ flex: 1 }}>
+      
       <Camera
         style={additionalStyles.camera}
         type={front ? Camera.Constants.Type.front : Camera.Constants.Type.back}

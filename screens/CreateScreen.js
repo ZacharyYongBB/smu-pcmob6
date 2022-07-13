@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
@@ -16,16 +17,22 @@ export default function CreateScreen({ navigation }) {
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
 
+  const postPicture = useSelector(
+    (state) => state.accountPrefs.postPicture
+  );
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState("");
+  
   async function savePost() {
     const post = {
       title: title,
       date: date,
       weight: weight,
       reps: reps,
+      //postPicture: postPicture,
     };
     try {
       console.log(token);
@@ -72,12 +79,18 @@ export default function CreateScreen({ navigation }) {
           value={reps}
           onChangeText={(text) => setReps(text)}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Camera", { screen: "CameraScreen", params: { goBackTo: "Add" }})}>
+        <TouchableOpacity onPress={() => navigation.navigate("Camera", { 
+          
+          screen: "CameraScreen", params: { goBackTo: "Add", fromCreateScreen: true, }})}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
           {" "}
           Upload Photo{" "}
         </Text>
       </TouchableOpacity>
+      <Image
+        source={{ uri: postPicture }}
+        style={{ width: 100, height: 100, marginBottom:5, marginTop:5, }}
+      />
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
           onPress={savePost}

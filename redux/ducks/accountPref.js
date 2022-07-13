@@ -3,11 +3,18 @@ export const DARK_MODE = "dark_mode";
 export const UPLOAD_PIC = "upload_pic";
 export const DELETE_PIC = "delete_pic";
 export const CHANGE_MODE = "change_mode";
+export const ADD_PIC = "add_pic";
+
 
 const initialState = {
     isDark: false,
     profilePicture: null,
+    postPicture: null,
 };
+
+export function addPicAction() {
+    return { type: ADD_PIC };
+}
 
 export function changeModeAction() {
     return { type: CHANGE_MODE };
@@ -36,6 +43,11 @@ export default function accountPrefReducer(state = initialState, action) {
             return{
                 ...state,
                 profilePicture: action.payload,
+            };
+        case ADD_PIC:
+            return{
+                ...state,
+                postPicture: action.payload,
             };
 
         case DELETE_PIC:
