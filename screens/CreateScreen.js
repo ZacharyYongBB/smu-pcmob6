@@ -35,6 +35,7 @@ export default function CreateScreen({ navigation }) {
       weight: weight,
       reps: reps,
       picture: postPicture,
+      note:"",
     };
     try {
       console.log(token);

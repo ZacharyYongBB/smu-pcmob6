@@ -5,15 +5,16 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ScrollView,
   View,
-  Image,
+  
 } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
-import ImageLoad from "react-native-image-placeholder";
 
-export default function EditScreen({ navigation }) {
+
+export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
@@ -22,18 +23,12 @@ export default function EditScreen({ navigation }) {
     (state) => state.accountPrefs.postPicture
   );
 
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [weight, setWeight] = useState("");
-  const [reps, setReps] = useState("");
+  const [note, setNote] = useState("");
+
   
-  async function savePost() {
+  async function saveNote() {
     const post = {
-      title: title,
-      date: date,
-      weight: weight,
-      reps: reps,
-      picture: postPicture,
+      note: note,
     };
     try {
       console.log(token);
@@ -48,35 +43,34 @@ export default function EditScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={{ margin: 20, }}>
+    <ScrollView style={styles.container}  keyboardShouldPersistTaps='handled'>
+      <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Notes:</Text>
         <TextInput
-          style={additionalStyles.notesInputnput }
-          value={title}
-          onChangeText={(text) => setTitle(text)}
+          style={additionalStyles.input}
+          value={note}
+          onChangeText={(text) => setNote(text)}
         />
-        
         
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
-          onPress={savePost}
+          onPress={saveNote}
         >
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const additionalStyles = StyleSheet.create({
-  notesInput: {
+  input: {
     fontSize: 24,
     borderWidth: 2,
     borderColor: "black",
     marginBottom: 15,
     borderRadius: 5,
-    
+    height: 250,
   },
   label: {
     fontSize: 28,
