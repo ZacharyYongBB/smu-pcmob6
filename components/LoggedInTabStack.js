@@ -4,6 +4,7 @@ import BlogStack from "../components/BlogStack";
 import AccountStack from "../components/AccountStack";
 import { FontAwesome } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
+import FunStack from "./FunStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,8 @@ export default function LoggedInTabStack() {
             iconName = "dribbble";
           } else if (route.name === "Settings") {
             iconName = "cog";
+          } else {
+            iconName = "gamepad";
           }
           // You can return any component that you like here!
           return <FontAwesome name={iconName} size={size} color={color} />;
@@ -32,6 +35,7 @@ export default function LoggedInTabStack() {
     >
       <Tab.Screen name="Workouts" component={BlogStack} />
       <Tab.Screen name="Settings" component={AccountStack} />
+      <Tab.Screen name="Fun" component={FunStack} />
     </Tab.Navigator>
   );
 }
