@@ -19,7 +19,6 @@ export default function SignInSignUpScreen({ navigation }) {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [errorText, setErrorText] = useState('')
-
   const [email,setEmail] = useState('')
 
   const [isLogIn, setIsLogIn] = useState(true)
@@ -83,6 +82,16 @@ export default function SignInSignUpScreen({ navigation }) {
     }
   }
 
+  async function forget() {
+    if (email == "") {
+      setErrorText("Please enter your email");
+    } else if (email.includes("@" && ".")) {
+      setErrorText("Check your email");
+    }
+     else 
+      setErrorText("Please enter a valid email");
+  }
+
   const buttonText = isLogIn ? "Log In" : isForget ? "Send" : "Sign Up";
   return (
     <View style={styles.container}>
@@ -133,7 +142,7 @@ export default function SignInSignUpScreen({ navigation }) {
             placeholder="Email:"
             placeholderTextColor="#003f5c"
             secureTextEntry={true}
-            onChangeText={(em) => setEmail(em)}
+            onChangeText={(email) => setEmail(email)}
           />
         </View>
         : <View/>
@@ -142,7 +151,7 @@ export default function SignInSignUpScreen({ navigation }) {
       <View/>
       <View>
         <View style={{flexDirection: "row"}}>
-          <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : isForget ? "forget" : signUp}>
+          <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : isForget ? forget : signUp}>
              
           {loading ? <ActivityIndicator style={styles.buttonText }/> : <Text style={styles.buttonText}> {buttonText} </Text>}
           </TouchableOpacity>
