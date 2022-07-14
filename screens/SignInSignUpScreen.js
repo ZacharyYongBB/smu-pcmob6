@@ -20,8 +20,12 @@ export default function SignInSignUpScreen({ navigation }) {
   const [loading, setLoading] = useState(false)
   const [errorText, setErrorText] = useState('')
 
+  const [email,setEmail] = useState('')
+
   const [isLogIn, setIsLogIn] = useState(true)
   const [confirmPassword,setConfirmPassword] = useState('')
+
+  const [isForget, setIsForget] = useState(false)
 
   async function login() {
     console.log("---- Login time ----");
@@ -79,13 +83,14 @@ export default function SignInSignUpScreen({ navigation }) {
     }
   }
 
-  const buttonText = isLogIn ? "Log In" : "Sign Up";
+  const buttonText = isLogIn ? "Log In" : isForget ? "Send" : "Sign Up";
   return (
     <View style={styles.container}>
       <Image source={require('../assets/titlelogo.png')} style={{ width: 250, height: 250, borderRadius: 200 }} />
       
-      <Text style={styles.title}>
-        {isLogIn ? "Log In" : "Sign Up"}
+
+      {isForget ? <View /> : <><Text style={styles.title}>
+        {isLogIn ? "Log In" : (isForget ? "Forget" : "Sign Up")}
       </Text>
       <View style={styles.inputView}>
         <TextInput
@@ -97,8 +102,6 @@ export default function SignInSignUpScreen({ navigation }) {
         />
       </View>
 
-
-  
       <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
@@ -109,9 +112,10 @@ export default function SignInSignUpScreen({ navigation }) {
           onChangeText={(pw) => setPassword(pw)}
         />
       </View>
+      </>}
 
 
-      {isLogIn ? <View/> :
+      {isLogIn || isForget ? <View/> :
         <View style={styles.inputView}>
           <TextInput
             style={styles.textInput}
@@ -121,10 +125,24 @@ export default function SignInSignUpScreen({ navigation }) {
             onChangeText={(pw) => setConfirmPassword(pw)}
           />
         </View>}
+
+        {isForget ?
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Email:"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            onChangeText={(em) => setEmail(em)}
+          />
+        </View>
+        : <View/>
+        }
+
       <View/>
       <View>
         <View style={{flexDirection: "row"}}>
-          <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : signUp}>
+          <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : isForget ? "forget" : signUp}>
              
           {loading ? <ActivityIndicator style={styles.buttonText }/> : <Text style={styles.buttonText}> {buttonText} </Text>}
           </TouchableOpacity>
@@ -133,7 +151,7 @@ export default function SignInSignUpScreen({ navigation }) {
       <Text style={styles.errorText}>
         {errorText}
       </Text>
-      <TouchableOpacity
+      {isForget ? <View /> : <TouchableOpacity
         onPress={() => {
          LayoutAnimation.configureNext({
            duration: 700,
@@ -144,6 +162,27 @@ export default function SignInSignUpScreen({ navigation }) {
          setErrorText("");
        }}>
           <Text style={styles.switchText}> {isLogIn ? "No account? Sign up now." : "Already have an account? Log in here."}</Text>
+      </TouchableOpacity>}
+
+      <TouchableOpacity
+         onPress={() => {
+          LayoutAnimation.configureNext({
+            duration: 700,
+            create: { type: 'linear', property: 'opacity' },
+            update: { type: 'spring', springDamping: 0.5 }
+          });
+          setIsLogIn(!isLogIn);
+          setIsForget(!isForget);
+          if (isForget) {
+            setIsForget(false);
+            setIsLogIn(true)
+          } else {
+            setIsForget(true);
+            setIsLogIn(false)
+          }
+          setErrorText("");
+        }}>
+        <Text style={styles.switchText}>Forget Password?</Text>
       </TouchableOpacity>
     </View>
   );
