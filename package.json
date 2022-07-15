@@ -11,6 +11,7 @@
     "@babel/plugin-transform-regenerator": "7.4.4",
     "@kichiyaki/react-native-sketch-canvas": "^0.8.10",
     "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-community/datetimepicker": "^6.2.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.8",

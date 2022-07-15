@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View} from "react-native";
 import { useSelector } from "react-redux";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import CalendarPicker from 'react-native-calendar-picker';
+
 
 export default function FunScreen({ navigation }) {
   const isDark = useSelector((state) => state.accountPrefs.isDark);
@@ -10,7 +11,10 @@ export default function FunScreen({ navigation }) {
 
   
   const [selectedStartDate, setselectedStartDate] = useState('')
+  const minDate = new Date(); // Today
   
+  
+
 
     function onDateChange(date) {
         setselectedStartDate(date)
@@ -20,8 +24,17 @@ export default function FunScreen({ navigation }) {
     <View style={styles.container}>
          
          <CalendarPicker
-          onDateChange={onDateChange}
+          startFromMonday={true}
+          allowRangeSelection={false}
+          todayBackgroundColor="#f2e6ff"
+          selectedDayColor="#7300e6"
+          selectedDayTextColor="#FFFFFF"
+          
         />
+
+        <Text>what is today's day: {selectedStartDate}</Text>
+        <Text>You're training Chest today</Text>
+        
 
     </View>
   );

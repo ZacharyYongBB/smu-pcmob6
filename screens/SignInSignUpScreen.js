@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { LayoutAnimation, Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard, Image } from 'react-native';
+import { LayoutAnimation, Platform, StyleSheet, ScrollView, View, Text, TextInput, TouchableOpacity, UIManager, ActivityIndicator, Keyboard, Image } from 'react-native';
 import { API, API_LOGIN, API_SIGNUP } from '../constants/API';
 
 import axios from 'axios';
