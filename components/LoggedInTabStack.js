@@ -35,7 +35,7 @@ export default function LoggedInTabStack() {
     >
       <Tab.Screen name="Workouts" component={BlogStack} />
       <Tab.Screen name="Settings" component={AccountStack} />
-      <Tab.Screen name="Calender" component={FunStack} />
+      <Tab.Screen name="Calendar" component={FunStack} />
     </Tab.Navigator>
   );
 }
