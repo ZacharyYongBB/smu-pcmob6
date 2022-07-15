@@ -26,7 +26,7 @@ export default function LoggedInTabStack() {
           } else if (route.name === "Settings") {
             iconName = "cog";
           } else {
-            iconName = "gamepad";
+            iconName = "calendar";
           }
           // You can return any component that you like here!
           return <FontAwesome name={iconName} size={size} color={color} />;
@@ -35,7 +35,7 @@ export default function LoggedInTabStack() {
     >
       <Tab.Screen name="Workouts" component={BlogStack} />
       <Tab.Screen name="Settings" component={AccountStack} />
-      <Tab.Screen name="Fun" component={FunStack} />
+      <Tab.Screen name="Calender" component={FunStack} />
     </Tab.Navigator>
   );
 }

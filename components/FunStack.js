@@ -1,22 +1,22 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import FunScreen from "../screens/FunScreen";
+import CalenderScreen from "../screens/CalenderScreen";
 import { darkStyles, lightStyles } from "../styles/commonStyles";
 import { useSelector } from "react-redux";
 
 const Stack = createStackNavigator();
 
-export default function FunStack() {
+export default function CalenderStack() {
   const isDark = useSelector((state) => state.accountPrefs.isDark);
   const styles = isDark ? darkStyles : lightStyles;
 
   return (
     <Stack.Navigator>
       <Stack.Screen
-        component={FunScreen}
-        name="Fun"
+        component={CalenderScreen}
+        name="Calender"
         options={{
-          title: "Fun stuffs here",
+          title: "Plan your workout!",
           headerStyle: styles.header,
           headerTitleStyle: styles.headerTitle,
           headerLeft: null,
